@@ -23,7 +23,7 @@ lint:
 	swiftlint lint --config swiftlint.yml
 
 fix:
-	swiftlint lint --fix --config swiftlint
+	swiftlint lint --fix --config swiftlint.yml
 
 open:
 	open -a /Applications/Xcode.app .

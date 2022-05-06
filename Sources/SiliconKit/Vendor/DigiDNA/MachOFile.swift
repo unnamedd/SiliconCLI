@@ -50,7 +50,7 @@ public class MachOFile {
           _ = try stream.readBigEndianUnsignedInteger()
           _ = try stream.readBigEndianUnsignedInteger()
           _ = try stream.readBigEndianUnsignedInteger()
-    
+
           self.architectures.append(MachOFile.cpuToArch(type: cpu))
         }
       }

@@ -74,7 +74,7 @@ public final class Silicon {
         total: applications.count,
         applications: applications
       )
-      
+
       let encodedValue = try encoder.encode(object)
 
       guard let formattedValue = String(data: encodedValue, encoding: .utf8) else {

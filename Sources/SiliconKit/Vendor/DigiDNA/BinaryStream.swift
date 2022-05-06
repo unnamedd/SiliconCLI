@@ -41,10 +41,10 @@ public class BinaryStream {
     case readError(String)
     case invalidFixedFloatingPointFormat(String)
   }
-  
+
   private var stream: InputStream
   private var url: URL
-  
+
   public convenience init(path: String) throws {
     do {
       try self.init(url: URL(fileURLWithPath: path))
@@ -53,7 +53,7 @@ public class BinaryStream {
       throw error
     }
   }
-  
+
   public init(url: URL) throws {
     var dir: ObjCBool = false
 
@@ -106,7 +106,7 @@ public class BinaryStream {
       let buffer = try read(size: 2)
       let n1 = UInt16(buffer[0])
       let n2 = UInt16(buffer[1])
-  
+
       return (n1 << 8) | n2
     }
     catch {
@@ -212,7 +212,7 @@ public class BinaryStream {
       throw error
     }
   }
-  
+
   public func readNULLTerminatedString() throws -> String {
     var value = String()
 
