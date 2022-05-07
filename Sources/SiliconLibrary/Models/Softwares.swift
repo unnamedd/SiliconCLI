@@ -23,4 +23,5 @@ import Foundation
 public struct Softwares: Encodable {
   public let total: Int
   public let applications: Applications
+  public let paths: [String]
 }

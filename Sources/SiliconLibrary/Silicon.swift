@@ -25,13 +25,13 @@ public final class Silicon {
   private let directories: [AbsolutePath]
   private var applications: Applications
 
-  public init(paths: [String]) {
+  public init(directories: [String]) {
     self.applications = []
-    self.directories = paths.map { AbsolutePath($0) }
+    self.directories = directories.map { AbsolutePath($0) }
   }
 
-  public convenience init(path: String) {
-    self.init(paths: [path])
+  public convenience init(directory: String) {
+    self.init(directories: [directory])
   }
 
   public func scan() {
@@ -72,7 +72,8 @@ public final class Silicon {
 
       let object = Softwares(
         total: applications.count,
-        applications: applications
+        applications: applications,
+        paths: directories.map(\.pathString)
       )
 
       let encodedValue = try encoder.encode(object)
@@ -88,12 +89,5 @@ public final class Silicon {
         print(app)
       }
     }
-  }
-}
-
-extension Silicon {
-  public enum OutputFormat {
-    case json
-    case text
   }
 }

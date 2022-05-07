@@ -14,9 +14,9 @@ let package = Package(
       ]
     ),
     .library(
-      name: "SiliconKit",
+      name: "SiliconLibrary",
       targets: [
-        "SiliconKit",
+        "SiliconLibrary",
       ]
     ),
   ],
@@ -32,7 +32,7 @@ let package = Package(
   ],
   targets: [
     .target(
-      name: "SiliconKit",
+      name: "SiliconLibrary",
       dependencies: [
         .product(name: "SwiftToolsSupport-auto", package: "swift-tools-support-core"),
       ]
@@ -40,7 +40,7 @@ let package = Package(
     .executableTarget(
       name: "Silicon",
       dependencies: [
-        "SiliconKit",
+        "SiliconLibrary",
         .product(name: "SwiftToolsSupport-auto", package: "swift-tools-support-core"),
         .product(name: "ArgumentParser", package: "swift-argument-parser"),
       ]
