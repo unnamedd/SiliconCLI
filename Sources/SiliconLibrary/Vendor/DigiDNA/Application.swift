@@ -35,15 +35,11 @@ import Foundation
 
 public typealias Applications = [Application]
 
+// MARK: - Application
+
 public struct Application {
-  public private(set) var name: String
-  public private(set) var path: String
-  public private(set) var version: String?
-  public private(set) var architectures: [String]
-  public private(set) var isAppleSiliconReady: Bool
-  public private(set) var architecture: String
-  public private(set) var bundleID: String?
-  public private(set) var isSystemApp: Bool
+
+  // MARK: - Lifecycle
 
   public init?(path: String) {
     var isDir = ObjCBool(booleanLiteral: false)
@@ -69,16 +65,18 @@ public struct Application {
       return nil
     }
 
-    guard let executable: String = {
-      if
-        let bundle = info["CFBundleExecutable"] as? String,
-        bundle != "WRAPPEDPRODUCTNAME"
+    guard
+      let executable: String =
       {
-        return bundle
-      }
+        if
+          let bundle = info["CFBundleExecutable"] as? String,
+          bundle != "WRAPPEDPRODUCTNAME"
+        {
+          return bundle
+        }
 
-      return ((path as NSString).lastPathComponent as NSString).deletingPathExtension
-    }()
+        return ((path as NSString).lastPathComponent as NSString).deletingPathExtension
+      }()
     else {
       return nil
     }
@@ -154,4 +152,16 @@ public struct Application {
       }
     }
   }
+
+  // MARK: - Public
+
+  public private(set) var name: String
+  public private(set) var path: String
+  public private(set) var version: String?
+  public private(set) var architectures: [String]
+  public private(set) var isAppleSiliconReady: Bool
+  public private(set) var architecture: String
+  public private(set) var bundleID: String?
+  public private(set) var isSystemApp: Bool
+
 }

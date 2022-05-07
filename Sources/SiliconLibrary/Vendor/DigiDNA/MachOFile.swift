@@ -34,7 +34,8 @@
 import Foundation
 
 public class MachOFile {
-  public private(set) var architectures: [String] = []
+
+  // MARK: - Lifecycle
 
   public init?(path: String) {
     do {
@@ -86,6 +87,10 @@ public class MachOFile {
       return nil
     }
   }
+
+  // MARK: - Public
+
+  public private(set) var architectures: [String] = []
 
   public static func cpuToArch(type: UInt32) -> String {
     if type == 7 {

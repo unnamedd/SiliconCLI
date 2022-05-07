@@ -22,8 +22,8 @@ import Foundation
 import TSCBasic
 
 public final class Silicon {
-  private let directories: [AbsolutePath]
-  private var applications: Applications
+
+  // MARK: - Lifecycle
 
   public init(directories: [String]) {
     applications = []
@@ -33,6 +33,8 @@ public final class Silicon {
   public convenience init(directory: String) {
     self.init(directories: [directory])
   }
+
+  // MARK: - Public
 
   public func scan() {
     for directory in directories {
@@ -90,4 +92,10 @@ public final class Silicon {
       }
     }
   }
+
+  // MARK: - Private
+
+  private let directories: [AbsolutePath]
+  private var applications: Applications
+
 }

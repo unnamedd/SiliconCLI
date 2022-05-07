@@ -34,16 +34,8 @@
 import Foundation
 
 public class BinaryStream {
-  public enum Error: Swift.Error {
-    case fileDoesNotExist(String)
-    case fileIsADirectory(String)
-    case fileIsNotReadable(String)
-    case readError(String)
-    case invalidFixedFloatingPointFormat(String)
-  }
 
-  private var stream: InputStream
-  private var url: URL
+  // MARK: - Lifecycle
 
   public convenience init(path: String) throws {
     do {
@@ -77,6 +69,16 @@ public class BinaryStream {
 
   deinit {
     stream.close()
+  }
+
+  // MARK: - Public
+
+  public enum Error: Swift.Error {
+    case fileDoesNotExist(String)
+    case fileIsADirectory(String)
+    case fileIsNotReadable(String)
+    case readError(String)
+    case invalidFixedFloatingPointFormat(String)
   }
 
   public func readUnsignedChar() throws -> UInt8 {
@@ -259,4 +261,10 @@ public class BinaryStream {
 
     return array
   }
+
+  // MARK: - Private
+
+  private var stream: InputStream
+  private var url: URL
+
 }

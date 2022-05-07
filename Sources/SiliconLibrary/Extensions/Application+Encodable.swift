@@ -21,16 +21,8 @@
 import Foundation
 
 extension Application: Encodable {
-  private enum OutputCodingKeys: String, CodingKey {
-    case name
-    case path
-    case version
-    case architectures
-    case isSystemApp
-    case isAppleSilicon
-    case architecture
-    case bundleID = "bundleIdentifier"
-  }
+
+  // MARK: - Public
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: OutputCodingKeys.self)
@@ -44,4 +36,18 @@ extension Application: Encodable {
     try container.encode(bundleID, forKey: .bundleID)
     try container.encode(isSystemApp, forKey: .isSystemApp)
   }
+
+  // MARK: - Private
+
+  private enum OutputCodingKeys: String, CodingKey {
+    case name
+    case path
+    case version
+    case architectures
+    case isSystemApp
+    case isAppleSilicon
+    case architecture
+    case bundleID = "bundleIdentifier"
+  }
+
 }

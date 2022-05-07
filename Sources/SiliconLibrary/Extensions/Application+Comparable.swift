@@ -20,11 +20,15 @@
 
 import Foundation
 
+// MARK: - Equatable
+
 extension Application: Equatable {
   public static func == (lhs: Application, rhs: Application) -> Bool {
     lhs.bundleID == rhs.bundleID
   }
 }
+
+// MARK: - Hashable
 
 extension Application: Hashable {
   public func hash(into hasher: inout Hasher) {
@@ -33,6 +37,8 @@ extension Application: Hashable {
     hasher.combine(bundleID)
   }
 }
+
+// MARK: - Comparable
 
 extension Application: Comparable {
   public static func < (lhs: Application, rhs: Application) -> Bool {
