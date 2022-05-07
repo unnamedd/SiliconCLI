@@ -1,6 +1,69 @@
---stripunusedargs closure-only
---disable blankLinesAtStartOfScope
---indent 2
---elseposition next-line
---hexgrouping ignore
+# Swift Version
 --swiftversion 5.6
+
+# Rules
+--rules acronyms
+--rules isEmpty
+--rules andOperator
+--rules duplicateImports
+--rules elseOnSameLine
+--rules indent
+--rules numberFormatting
+--rules markTypes
+--rules organizeDeclarations
+--rules preferKeyPath
+--rules wrapArguments
+--rules wrapAttributes
+--rules redundantType
+--rules redundantExtensionACL
+--rules redundantFileprivate
+--rules redundantLet
+--rules redundantLetError
+--rules redundantNilInit
+--rules redundantParens
+--rules redundantPattern
+--rules redundantReturn
+--rules sortedImports
+--rules spaceAroundBraces
+--rules spaceAroundBrackets
+--rules spaceAroundComments
+--rules spaceInsideComments
+--rules spaceInsideGenerics
+--rules spaceInsideParens
+--rules todos
+--rules typeSugar
+--rules unusedArguments
+--rules wrapConditionalBodies
+--rules wrapEnumCases
+--rules wrapMultilineStatementBraces
+
+# Disables
+--disable blankLinesAtStartOfScope
+
+# Options
+--stripunusedargs closure-only # unusedArguments
+--elseposition next-line # elseOnSameLine
+--indent 2 # indent
+--ifdef no-indent # indent
+--hexgrouping ignore # numberFormatting
+--self remove # redundantSelf
+--redundanttype inferred # redundantType
+--trimwhitespace always # trailingSpace
+--commas always # trailingCommas
+--extensionmark MARK: - %c # markTypes
+
+# organizeDeclarations
+--beforemarks
+--categorymark MARK: - %c
+--organizetypes class,struct,enum,extension 
+
+# wrapArguments
+--wraparguments before-first
+--wrapcollections before-first
+--wraptypealiases before-first
+--wrapconditions before-first
+--wrapelements before-first
+
+# wrapAttributes
+--funcattributes prev-line
+--typeattributes prev-line
