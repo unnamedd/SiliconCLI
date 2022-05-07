@@ -1,0 +1,6 @@
+--stripunusedargs closure-only
+--disable blankLinesAtStartOfScope
+--indent 2
+--elseposition next-line
+--hexgrouping ignore
+--swiftversion 5.6

@@ -25,6 +25,8 @@ lint:
 fix:
 	swiftlint lint --fix --config .swiftlint.yml
 	
+format:
+	swiftformat . --config .swiftformat
 
 open:
 	open -a /Applications/Xcode.app .
