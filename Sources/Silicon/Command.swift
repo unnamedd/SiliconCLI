@@ -20,27 +20,27 @@
 
 import ArgumentParser
 import Foundation
-import TSCBasic
 import SiliconLibrary
+import TSCBasic
 
 struct Command: ParsableCommand {
-    static var configuration = CommandConfiguration(
-        commandName: "silicon",
-        abstract: "Generate a report for the list of apps in the computer and the architecture used ",
-        shouldDisplay: true
+  static var configuration = CommandConfiguration(
+    commandName: "silicon",
+    abstract: "Generate a report for the list of apps in the computer and the architecture used ",
+    shouldDisplay: true
+  )
+
+  @Flag(help: "Print the information in the JSON format")
+  var json = false
+
+  func run() throws {
+    let directories = NSSearchPathForDirectoriesInDomains(.applicationDirectory, .allDomainsMask, true)
+    let silicon = Silicon(directories: directories)
+
+    silicon.scan()
+
+    try silicon.generateOutput(
+      format: json ? .json : .text
     )
-    
-    @Flag(help: "Print the information in the JSON format")
-    var json = false
-    
-    func run() throws {
-        let directories = NSSearchPathForDirectoriesInDomains(.applicationDirectory, .allDomainsMask, true)
-        let silicon = Silicon(directories: directories)
-        
-        silicon.scan()
-        
-        try silicon.generateOutput(
-            format: json ? .json : .text
-        )
-    }
+  }
 }

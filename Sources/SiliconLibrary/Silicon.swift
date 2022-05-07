@@ -26,7 +26,7 @@ public final class Silicon {
   private var applications: Applications
 
   public init(directories: [String]) {
-    self.applications = []
+    applications = []
     self.directories = directories.map { AbsolutePath($0) }
   }
 

@@ -19,8 +19,8 @@
 //  SOFTWARE.
 
 @main
-struct Tool {
-    static func main() throws {
-        Command.main()
-    }
+enum Tool {
+  static func main() throws {
+    Command.main()
+  }
 }

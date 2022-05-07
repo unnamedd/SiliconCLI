@@ -98,59 +98,59 @@ public struct Application {
       version = bundleVersion
     }
 
-    self.bundleID = info["CFBundleIdentifier"] as? String
+    bundleID = info["CFBundleIdentifier"] as? String
     self.version = version
-    self.name = FileManager.default.displayName(atPath: path)
+    name = FileManager.default.displayName(atPath: path)
     self.path = path
-    self.architectures = macho.architectures
-    self.isSystemApp = path.hasPrefix("/System")
+    architectures = macho.architectures
+    isSystemApp = path.hasPrefix("/System")
 
     if macho.architectures.count == 1 {
       if macho.architectures.contains("arm64") {
-        self.isAppleSiliconReady = true
-        self.architecture = "Apple"
+        isAppleSiliconReady = true
+        architecture = "Apple"
       }
       else if macho.architectures.contains("x86_64") {
-        self.isAppleSiliconReady = false
-        self.architecture = "Intel 64"
+        isAppleSiliconReady = false
+        architecture = "Intel 64"
       }
       else if macho.architectures.contains("i386") {
-        self.isAppleSiliconReady = false
-        self.architecture = "Intel 32"
+        isAppleSiliconReady = false
+        architecture = "Intel 32"
       }
       else if macho.architectures.contains("ppc") {
-        self.isAppleSiliconReady = false
-        self.architecture = "PowerPC"
+        isAppleSiliconReady = false
+        architecture = "PowerPC"
       }
       else {
-        self.isAppleSiliconReady = false
-        self.architecture = "Unknown"
+        isAppleSiliconReady = false
+        architecture = "Unknown"
       }
     }
     else {
       if macho.architectures.contains("arm64") {
-        self.isAppleSiliconReady = true
-        self.architecture = "Universal"
+        isAppleSiliconReady = true
+        architecture = "Universal"
       }
       else if macho.architectures.contains("ppc"), macho.architectures.contains("i386"), macho.architectures.contains("x86_64") {
-        self.isAppleSiliconReady = false
-        self.architecture = "PowerPC/Intel 32/64"
+        isAppleSiliconReady = false
+        architecture = "PowerPC/Intel 32/64"
       }
       else if macho.architectures.contains("ppc"), macho.architectures.contains("x86_64") {
-        self.isAppleSiliconReady = false
-        self.architecture = "PowerPC/Intel 64"
+        isAppleSiliconReady = false
+        architecture = "PowerPC/Intel 64"
       }
       else if macho.architectures.contains("ppc"), macho.architectures.contains("i386") {
-        self.isAppleSiliconReady = false
-        self.architecture = "PowerPC/Intel 32"
+        isAppleSiliconReady = false
+        architecture = "PowerPC/Intel 32"
       }
       else if macho.architectures.contains("i386"), macho.architectures.contains("x86_64") {
-        self.isAppleSiliconReady = false
-        self.architecture = "Intel 32/64"
+        isAppleSiliconReady = false
+        architecture = "Intel 32/64"
       }
       else {
-        self.isAppleSiliconReady = false
-        self.architecture = "Unknown"
+        isAppleSiliconReady = false
+        architecture = "Unknown"
       }
     }
   }

@@ -51,32 +51,32 @@ public class MachOFile {
           _ = try stream.readBigEndianUnsignedInteger()
           _ = try stream.readBigEndianUnsignedInteger()
 
-          self.architectures.append(MachOFile.cpuToArch(type: cpu))
+          architectures.append(MachOFile.cpuToArch(type: cpu))
         }
       }
       else if magic == 0xCEFAEDFE {
         let cpu = try stream.readLittleEndianUnsignedInteger()
         let arch = MachOFile.cpuToArch(type: cpu)
 
-        self.architectures.append(arch)
+        architectures.append(arch)
       }
       else if magic == 0xFEEDFACE {
         let cpu = try stream.readBigEndianUnsignedInteger()
         let arch = MachOFile.cpuToArch(type: cpu)
 
-        self.architectures.append(arch)
+        architectures.append(arch)
       }
       else if magic == 0xCFFAEDFE {
         let cpu = try stream.readLittleEndianUnsignedInteger()
         let arch = MachOFile.cpuToArch(type: cpu)
 
-        self.architectures.append(arch)
+        architectures.append(arch)
       }
       else if magic == 0xFEEDFACF {
         let cpu = try stream.readBigEndianUnsignedInteger()
         let arch = MachOFile.cpuToArch(type: cpu)
 
-        self.architectures.append(arch)
+        architectures.append(arch)
       }
       else {
         return nil
