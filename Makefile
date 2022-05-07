@@ -20,10 +20,11 @@ run: build
 	./$(EXECUTABLE_NAME)
 
 lint:
-	swiftlint lint --config swiftlint.yml
+	swiftlint lint --config .swiftlint.yml
 
 fix:
-	swiftlint lint --fix --config swiftlint.yml
+	swiftlint lint --fix --config .swiftlint.yml
+	
 
 open:
 	open -a /Applications/Xcode.app .
