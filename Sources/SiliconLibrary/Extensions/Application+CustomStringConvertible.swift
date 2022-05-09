@@ -22,6 +22,6 @@ import Foundation
 
 extension Application: CustomStringConvertible {
   public var description: String {
-    "\(name) (\(architecture))"
+    "\(name) (\(architecture)) \(isElectronApp ? "(Electron-based)" : "")"
   }
 }

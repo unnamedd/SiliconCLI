@@ -38,7 +38,6 @@ public typealias Applications = [Application]
 // MARK: - Application
 
 public struct Application {
-
   // MARK: - Lifecycle
 
   public init?(path: String) {
@@ -65,18 +64,16 @@ public struct Application {
       return nil
     }
 
-    guard
-      let executable: String =
+    guard let executable: String = {
+      if
+        let bundle = info["CFBundleExecutable"] as? String,
+        bundle != "WRAPPEDPRODUCTNAME"
       {
-        if
-          let bundle = info["CFBundleExecutable"] as? String,
-          bundle != "WRAPPEDPRODUCTNAME"
-        {
-          return bundle
-        }
+        return bundle
+      }
 
-        return ((path as NSString).lastPathComponent as NSString).deletingPathExtension
-      }()
+      return ((path as NSString).lastPathComponent as NSString).deletingPathExtension
+    }()
     else {
       return nil
     }
@@ -96,12 +93,22 @@ public struct Application {
       version = bundleVersion
     }
 
+    var isElectron = false
+    ["Electron.framework", "Electron Framework.framework"].forEach {
+      let frameworkPath = "\(path)/Contents/Frameworks/\($0)"
+      
+      if FileManager.default.fileExists(atPath: frameworkPath) {
+        isElectron = true
+      }
+    }
+
+    architectures = macho.architectures
     bundleID = info["CFBundleIdentifier"] as? String
-    self.version = version
+    isElectronApp = isElectron
+    isSystemApp = path.hasPrefix("/System")
     name = FileManager.default.displayName(atPath: path)
     self.path = path
-    architectures = macho.architectures
-    isSystemApp = path.hasPrefix("/System")
+    self.version = version
 
     if macho.architectures.count == 1 {
       if macho.architectures.contains("arm64") {
@@ -155,13 +162,13 @@ public struct Application {
 
   // MARK: - Public
 
+  public private(set) var architecture: String
+  public private(set) var architectures: [String]
+  public private(set) var bundleID: String?
+  public private(set) var isAppleSiliconReady: Bool
+  public private(set) var isElectronApp: Bool
+  public private(set) var isSystemApp: Bool
   public private(set) var name: String
   public private(set) var path: String
   public private(set) var version: String?
-  public private(set) var architectures: [String]
-  public private(set) var isAppleSiliconReady: Bool
-  public private(set) var architecture: String
-  public private(set) var bundleID: String?
-  public private(set) var isSystemApp: Bool
-
 }

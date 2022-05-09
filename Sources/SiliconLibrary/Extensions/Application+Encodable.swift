@@ -35,6 +35,7 @@ extension Application: Encodable {
     try container.encode(architectures, forKey: .architectures)
     try container.encode(bundleID, forKey: .bundleID)
     try container.encode(isSystemApp, forKey: .isSystemApp)
+    try container.encode(isElectronApp, forKey: .isElectronApp)
   }
 
   // MARK: - Private
@@ -48,6 +49,7 @@ extension Application: Encodable {
     case isAppleSilicon
     case architecture
     case bundleID = "bundleIdentifier"
+    case isElectronApp
   }
 
 }
