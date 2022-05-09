@@ -20,29 +20,14 @@ let package = Package(
       ]
     ),
   ],
-  dependencies: [
-    .package(
-      url: "https://github.com/apple/swift-tools-support-core.git",
-      .upToNextMinor(from: "0.2.5")
-    ),
-    .package(
-      url: "https://github.com/apple/swift-argument-parser.git",
-      .upToNextMinor(from: "1.1.2")
-    ),
-  ],
   targets: [
     .target(
-      name: "SiliconLibrary",
-      dependencies: [
-        .product(name: "SwiftToolsSupport-auto", package: "swift-tools-support-core"),
-      ]
+      name: "SiliconLibrary"
     ),
     .executableTarget(
       name: "Silicon",
       dependencies: [
         "SiliconLibrary",
-        .product(name: "SwiftToolsSupport-auto", package: "swift-tools-support-core"),
-        .product(name: "ArgumentParser", package: "swift-argument-parser"),
       ]
     ),
   ]

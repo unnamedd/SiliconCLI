@@ -1,6 +1,7 @@
 EXECUTABLE_NAME = silicon
 
-EXECUTABLE_PATH_RELEASE = .build/release/$(EXECUTABLE_NAME)
+BUILD_FLAGS = -c release --disable-sandbox --arch arm64 --arch x86_64
+EXECUTABLE_PATH_RELEASE = $(shell swift build $(BUILD_FLAGS) --show-bin-path)/$(EXECUTABLE_NAME)
 EXECUTABLE_PATH_DEBUG = .build/debug/$(EXECUTABLE_NAME)
 
 build:
@@ -13,7 +14,7 @@ clean:
 	rm -rf .build/ $(EXECUTABLE_NAME)
 
 build-release: clean
-	swift build -c release --disable-sandbox
+	swift build $(BUILD_FLAGS)
 	ln -s $(EXECUTABLE_PATH_RELEASE) $(EXECUTABLE_NAME)
 
 run: build

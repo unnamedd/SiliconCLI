@@ -18,9 +18,65 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
+import Foundation
+import SiliconLibrary
+
 @main
 enum Tool {
   static func main() throws {
-    Command.main()
+    var options = CommandLine.arguments
+    options.removeFirst()
+    
+    guard let option = options.first else {
+      try run()
+      return
+    }
+    
+    switch option {
+    case "-h", "--help":
+      help()
+    case "-j", "--json":
+      try run(json: true)
+    case "-v", "--version":
+      version()
+    default:
+      try run()
+    }
+  }
+
+  private static func run(json: Bool = false) throws {
+    let directories = NSSearchPathForDirectoriesInDomains(.applicationDirectory, .allDomainsMask, true)
+    let silicon = Silicon(directories: directories)
+    
+    silicon.scan()
+    
+    try silicon.generateOutput(
+      format: json ? .json : .text
+    )
+  }
+  
+  private static func help() {
+    let output = """
+     OVERVIEW: Generate a report for the list of apps in the computer and the architecture used
+    
+     USAGE: silicon [--json]
+    
+     OPTIONS:
+       -j, --json       Print the information in the JSON format
+       -h, --help       Show help information.
+       -v, --version    Print current Silicon version
+    """
+
+    print(output)
+  }
+  
+  private static func version() {
+    let version = "0.1"
+    
+    let description = """
+    silicon version: \(version)
+    """
+    
+    print(description)
   }
 }

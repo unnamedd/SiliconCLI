@@ -19,7 +19,6 @@
 //  SOFTWARE.
 
 import Foundation
-import TSCBasic
 
 public final class Silicon {
 
@@ -27,7 +26,7 @@ public final class Silicon {
 
   public init(directories: [String]) {
     applications = []
-    self.directories = directories.map { AbsolutePath($0) }
+    self.directories = directories
   }
 
   public convenience init(directory: String) {
@@ -39,15 +38,15 @@ public final class Silicon {
   public func scan() {
     for directory in directories {
       do {
-        let directoryContent = try localFileSystem.getDirectoryContents(directory)
-
+        let directoryContent = try FileManager.default.contentsOfDirectory(atPath: directory)
+        
         for content in directoryContent {
           guard content.hasSuffix(".app") else {
             continue
           }
 
-          let path = directory.appending(component: content)
-          guard let application = Application(path: path.pathString) else {
+          let path = "\(directory)/\(content)"
+          guard let application = Application(path: path) else {
             continue
           }
 
@@ -75,7 +74,7 @@ public final class Silicon {
       let object = Softwares(
         total: applications.count,
         applications: applications,
-        paths: directories.map(\.pathString)
+        paths: directories
       )
 
       let encodedValue = try encoder.encode(object)
@@ -95,7 +94,7 @@ public final class Silicon {
 
   // MARK: - Private
 
-  private let directories: [AbsolutePath]
+  private let directories: [String]
   private var applications: Applications
 
 }
