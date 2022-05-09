@@ -23,6 +23,9 @@ import SiliconLibrary
 
 @main
 enum Tool {
+
+  // MARK: - Internal
+
   static func main() throws {
     var options = CommandLine.arguments
     options.removeFirst()
@@ -43,6 +46,8 @@ enum Tool {
       try run()
     }
   }
+
+  // MARK: - Private
 
   private static func run(json: Bool = false) throws {
     let directories = NSSearchPathForDirectoriesInDomains(.applicationDirectory, .allDomainsMask, true)

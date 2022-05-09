@@ -38,6 +38,7 @@ public typealias Applications = [Application]
 // MARK: - Application
 
 public struct Application {
+
   // MARK: - Lifecycle
 
   public init?(path: String) {
@@ -64,16 +65,18 @@ public struct Application {
       return nil
     }
 
-    guard let executable: String = {
-      if
-        let bundle = info["CFBundleExecutable"] as? String,
-        bundle != "WRAPPEDPRODUCTNAME"
+    guard
+      let executable: String =
       {
-        return bundle
-      }
+        if
+          let bundle = info["CFBundleExecutable"] as? String,
+          bundle != "WRAPPEDPRODUCTNAME"
+        {
+          return bundle
+        }
 
-      return ((path as NSString).lastPathComponent as NSString).deletingPathExtension
-    }()
+        return ((path as NSString).lastPathComponent as NSString).deletingPathExtension
+      }()
     else {
       return nil
     }
@@ -96,7 +99,7 @@ public struct Application {
     var isElectron = false
     ["Electron.framework", "Electron Framework.framework"].forEach {
       let frameworkPath = "\(path)/Contents/Frameworks/\($0)"
-      
+
       if FileManager.default.fileExists(atPath: frameworkPath) {
         isElectron = true
       }

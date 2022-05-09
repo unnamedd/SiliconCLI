@@ -39,7 +39,7 @@ public final class Silicon {
     for directory in directories {
       do {
         let directoryContent = try FileManager.default.contentsOfDirectory(atPath: directory)
-        
+
         for content in directoryContent {
           guard content.hasSuffix(".app") else {
             continue
