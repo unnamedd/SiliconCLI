@@ -7,7 +7,10 @@ The idea is to expose some informations of the apps inside of your macOS in orde
 informations, such as: the architecture.
 
 Here is a small snippet returned by this CLI:
-
+```shell
+$ ./silicon -j
+```
+Result
 ```json
 {
   "applications": [
@@ -21,7 +24,8 @@ Here is a small snippet returned by this CLI:
       "isSystemApp": false,
       "name": "Around",
       "path": "/Applications/Around.app",
-      "version": "0.60.46"
+      "version": "0.60.46",
+      "isElectronApp" : true
     },
     {
       "architecture": "Intel 64",
@@ -33,7 +37,8 @@ Here is a small snippet returned by this CLI:
       "isSystemApp": false,
       "name": "Patterns",
       "path": "/Applications/Patterns.app",
-      "version": "1.2"
+      "version": "1.2",
+      "isElectronApp" : false
     },
     {
       "architecture": "Universal",
@@ -46,11 +51,24 @@ Here is a small snippet returned by this CLI:
       "isSystemApp": false,
       "name": "Xcode",
       "path": "/Applications/Xcode.app",
-      "version": "13.3.1"
+      "version": "13.3.1",
+      "isElectronApp" : false
     }
   ],
   "total": 3
 }
+```
+
+## Requirements
+
+- Swift 5.6 (or newer)
+
+## Compile and run
+
+```shell
+git clone https://github.com/unnamedd/SiliconCLI.git
+cd SiliconCLI
+make run
 ```
 
 ## Author
