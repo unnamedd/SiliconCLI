@@ -35,6 +35,10 @@ public final class Silicon {
 
   // MARK: - Public
 
+  /// List all the applications scanned in the system based on the directories injected
+  public private(set) var applications: Applications
+
+  /// `scan` will run a scan on the Applications folder injected and make them all available under the property `applications`
   public func scan() {
     for directory in directories {
       do {
@@ -65,6 +69,9 @@ public final class Silicon {
     applications = applications.sorted()
   }
 
+
+  /// Method responsible for generating an output based on the scan performed
+  /// - Parameter format: formats available `json` or `text`
   public func generateOutput(format: OutputFormat) throws {
     switch format {
     case .json:
@@ -95,6 +102,5 @@ public final class Silicon {
   // MARK: - Private
 
   private let directories: [String]
-  private var applications: Applications
 
 }
