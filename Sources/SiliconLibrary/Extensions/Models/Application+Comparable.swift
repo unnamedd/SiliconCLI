@@ -35,6 +35,7 @@ extension Application: Hashable {
     hasher.combine(bundleID)
     hasher.combine(architecture)
     hasher.combine(bundleID)
+
   }
 }
 
