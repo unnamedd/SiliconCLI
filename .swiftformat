@@ -20,7 +20,7 @@
 --rules redundantParens
 --rules redundantPattern
 --rules redundantReturn
---rules sortedImports
+--rules sortImports
 --rules spaceAroundBraces
 --rules spaceAroundBrackets
 --rules spaceAroundComments
@@ -52,7 +52,7 @@
 # organizeDeclarations
 --beforemarks
 --categorymark MARK: - %c
---organizetypes class,struct,enum,extension 
+--organizetypes class,struct,enum,extension
 
 # wrapArguments
 --wraparguments before-first

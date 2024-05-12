@@ -1,0 +1,26 @@
+[
+  {
+    "label": "Run App",
+    "command": "make run-app"
+  },
+  {
+    "label": "Run App (Hot Reloading)",
+    "command": "make run-app-hot-reloading"
+  },
+  {
+    "label": "Build",
+    "command": "make build"
+  },
+  {
+    "label": "Run CLI (Output: JSON)",
+    "command": "swift run -- silicon-cli --json"
+  },
+  {
+    "label": "Run CLI (Output: Text)",
+    "command": "swift run -- silicon-cli"
+  },
+  {
+    "label": "Clean Build",
+    "command": "make clean && make build"
+  }
+]

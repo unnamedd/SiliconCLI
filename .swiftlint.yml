@@ -16,6 +16,9 @@ disabled_rules:
   - type_body_length
   - statement_position
   - orphaned_doc_comment
+analyzer_rules:
+  - unused_declaration
+  - unused_import
 opt_in_rules:
   - trailing_whitespaces
   - indentation_width
@@ -30,8 +33,6 @@ opt_in_rules:
   - fatal_error_message
   - overridden_super_call
   - sorted_imports
-  - unused_declaration
-  - unused_import
   - vertical_whitespace_closing_braces
   - vertical_whitespace_opening_braces
   - yoda_condition

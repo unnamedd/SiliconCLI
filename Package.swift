@@ -1,16 +1,22 @@
-// swift-tools-version: 5.6
+// swift-tools-version: 5.9
 import PackageDescription
 
 let package = Package(
   name: "Silicon",
   platforms: [
-    .macOS(.v10_10),
+    .macOS(.v11),
   ],
   products: [
     .executable(
       name: "silicon",
       targets: [
-        "Silicon",
+        "App",
+      ]
+    ),
+    .executable(
+      name: "silicon-cli",
+      targets: [
+        "CLI",
       ]
     ),
     .library(
@@ -20,12 +26,28 @@ let package = Package(
       ]
     ),
   ],
+  dependencies: [
+    .package(
+      url: "https://github.com/unnamedd/SwiftTUI",
+      branch: "improvements/new-apis"
+    )
+  ],
   targets: [
     .target(
       name: "SiliconLibrary"
     ),
     .executableTarget(
-      name: "Silicon",
+      name: "App",
+      dependencies: [
+        "SiliconLibrary",
+        .product(
+          name: "SwiftTUI",
+          package: "SwiftTUI"
+        ),
+      ]
+    ),
+    .executableTarget(
+      name: "CLI",
       dependencies: [
         "SiliconLibrary",
       ]
