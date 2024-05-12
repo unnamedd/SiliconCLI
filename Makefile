@@ -25,7 +25,7 @@ help: ## Run `make` or `make help` to get an overview of available targets
 	@# Stolen from: https://marmelab.com/blog/2016/02/29/auto-documented-makefile.html
 	@grep -E '^[a-zA-Z0-9_-]+:.*?## .*$$' $(MAKEFILE_LIST) | \
 	       	sort | \
-		awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-10s\033[0m %s\n", $$1, $$2}'
+		awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-22s\033[0m %s\n", $$1, $$2}'
 
 .PHONY: all
 all: help
@@ -49,13 +49,13 @@ build-release: clean # Build project for release
 	ln -s $(EXECUTABLE_PATH_CLI_RELEASE) $(EXECUTABLE_NAME_CLI)
 	ln -s $(EXECUTABLE_PATH_APP_RELEASE) $(EXECUTABLE_NAME_APP)
 
-run: build # Compile and run the CLI project
+run: build ## Compile and run the CLI project
 	./$(EXECUTABLE_NAME_CLI)
 
-run-app: build # Compile and run the TUI app
+run-app: build ## Compile and run the TUI app
 	./$(EXECUTABLE_NAME_APP)
 
-run-app-hot-reloading: build # Compile and run the TUI app with hot reloading
+run-app-hot-reloading: build ## Compile and run the TUI app without having to redo all the compile and run process
 	SILICON_HOT_RELOADING=1 ./HotReloading.sh $(BUILDING_FILE_PATH) $(EXECUTABLE_NAME_APP) 2>/tmp/$(EXECUTABLE_NAME_APP)-output.log
 
 lint: ## Run SwiftLint in the project folder
