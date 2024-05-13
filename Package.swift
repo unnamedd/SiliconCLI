@@ -28,8 +28,8 @@ let package = Package(
   ],
   dependencies: [
     .package(
-      url: "https://github.com/unnamedd/SwiftTUI",
-      branch: "improvements/new-apis"
+      url: "https://github.com/rensbreur/SwiftTUI",
+      branch: "main"
     )
   ],
   targets: [
