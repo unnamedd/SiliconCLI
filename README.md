@@ -2,7 +2,7 @@
 
 Silicon is a Swift Package built upon the core technology of the [Silicon app](https://github.com/DigiDNA/Silicon), a product of [DigiDNA](https://www.digidna.net).
 
-> **Note:** This tool was originally designed to expose only an API using CLI to other apps via JSON format. However, due to my own interest in expanding it, I've decided to also play a bit more and create a TUI (_Terminal User Interface_) version of it. With that, now you can not only see the list of apps in Text and JSON mode but also make use of a full Terminal app with some features implemented. None of the original Silicon CLI is out; everything is in the same place as before, with just an addition.
+This tool was originally designed to expose only an API using CLI to other apps via JSON format. However, due to my own interest in expanding it, I've decided to also play a bit more and create a TUI (_Terminal User Interface_) version of it. With that, now you can also see the list of apps in Plain Text, JSON Format but also in a full Terminal app. The original library is still there to be used, just need to add this repo as dependency and import `SiliconLibrary`.
 
 ## CLI
 
@@ -74,6 +74,12 @@ Features implemented (so far):
 - [x] Filter by four categories (Silicon, Intel, System, and Electron)
 - [x] Details of the apps
 
+To Do:
+- [ ] Search apps by text
+- [ ] Open an app
+- [ ] Uninstall an app
+- [ ] Create a target on Makefile to install `silicon` and `silicon-cli`
+
 To use, just run in the root of the project
 
 ```shell
@@ -83,7 +89,8 @@ make run-app
 
 ## System Requirements
 
--  Swift 5.9 or newer
+- Swift 5.9 or newer
+- [FSWatch](https://emcrisostomo.github.io/fswatch/)
 
 ## Compile and run
 
@@ -92,11 +99,11 @@ $ git clone https://github.com/unnamedd/SiliconCLI.git
 $ cd SiliconCLI
 $ make run
 ```
-It is provided some very useful targets in the Makefile, just run 
+It is provided some very useful targets in the Makefile, just run
 ```shell
 $ make
 # or
-$ make help 
+$ make help
 ```
 
 ![](docs/help.png)
@@ -112,5 +119,5 @@ Silicon CLI and TUI App was developed and is maintained by [Thiago Holanda](http
 
 ## License
 
-Silicon CLI and TUI App is available under the [MIT License](http://opensource.org/licenses/MIT). 
+Silicon CLI and TUI App is available under the [MIT License](http://opensource.org/licenses/MIT).
 You can find all the necessary details in the [LICENSE](LICENSE) file.

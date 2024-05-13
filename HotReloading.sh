@@ -35,6 +35,10 @@ function stop_command {
   done
 }
 
+# FSWatch is going to be responsible for detecting some events in the monitored repository
+# such as: Renamed, MovedTo, Removed, Updated, Updated.
+# Those events are the ones I thought would be enough. If I forgot any, please, consider to contribute.
+
 # shellcheck disable=SC2162
 fswatch -0 "$MONITORED_FOLDER" --exclude "$EXCLUDED_FOLDERS_REGEX" --event Renamed --event MovedTo --event Removed --event Updated --event Created | while read -d "" _; do
   if [ -f "$BUILDING_FILE" ]; then
